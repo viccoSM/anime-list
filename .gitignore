@@ -33,3 +33,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDEA
+.idea
+!.idea/jsLinters/eslint.xml
+!.idea/.gitignore
+!.idea/i18nSettings.xml
+!.idea/prettier.xml
+!.idea/vcs.xml

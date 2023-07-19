@@ -1,10 +1,12 @@
 import React, {FC, useState} from 'react';
 import styled from "@emotion/styled";
 import Link from "next/link";
+import {handleErrorImg} from "@/utils/images";
 
 interface CardsProps {
   path: string,
   title: string
+  image?: string
 }
 
 interface CardImageProps {
@@ -17,10 +19,10 @@ const CardsComponent = styled.div`
   gap: 8px;
   align-items: center;
   position: relative;
-  max-width: 185px;
+  max-width: 220px;
   text-align: center;
   & .card-image{
-    max-height: 260px;
+    height: 170px;
     overflow: hidden;
     border-radius: 10px;
     & img{
@@ -45,7 +47,7 @@ const CardsComponent = styled.div`
     margin: 0;
   }
 `
-const Cards:FC<CardsProps> = ({path, title}) => {
+const Cards:FC<CardsProps> = ({path, title, image}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -55,6 +57,7 @@ const Cards:FC<CardsProps> = ({path, title}) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
   return (
     <CardsComponent
       onMouseEnter={handleMouseEnter}
@@ -62,8 +65,7 @@ const Cards:FC<CardsProps> = ({path, title}) => {
       isHovered={isHovered}
     >
       <div className='card-image'>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src='/images/aot-cover.jpeg' alt=""/>
+        <img src={image || '/images/default-img.png'} alt="" onError={handleErrorImg}/>
       </div>
       <h4>{title}</h4>
       <Link href={path} className="card-link"/>

@@ -23,7 +23,7 @@ const NavbarComponent = styled.div`
 const Navbar = () => (
   <NavbarComponent>
     <Link href="/">List</Link>
-    <Link href="/collection">Collection</Link>
+    <Link href="/collections">Collection</Link>
   </NavbarComponent>
 );
 

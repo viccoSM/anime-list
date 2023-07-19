@@ -64,6 +64,7 @@ const Cards:FC<CardsProps> = ({path, title, image}) => {
       onMouseLeave={handleMouseLeave}
       isHovered={isHovered}
     >
+
       <div className='card-image'>
         <img src={image || '/images/default-img.png'} alt="" onError={handleErrorImg}/>
       </div>

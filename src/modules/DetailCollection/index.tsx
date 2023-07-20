@@ -22,6 +22,10 @@ const ListComponent = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
     justify-items: center;
+    
+    & .card{
+      max-width: 220px;
+    }
 
     & .card-info {
       display: flex;
@@ -63,7 +67,7 @@ const Collection = () => {
       {collections[Number(id)].data.length > 0 ? (
         <div className='list-cards'>
           {collections[Number(id)].data.map((item: any, idx: number) => (
-            <div key={idx}>
+            <div className='card' key={idx}>
               <Cards path={`/detail/${item?.id}`} key={idx} image={item?.bannerImage}/>
               <div className='card-info'>
                 <h4>{item.title.romaji}</h4>

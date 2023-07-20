@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, FormEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, FormEvent} from 'react';
 import Button from "@/components/Button";
 import ModalWrapper, {ModalWrapperProps} from "@/components/ModalWrapper";
 import styled from "@emotion/styled";
@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 interface ModalEditCollectionProps extends Omit<ModalWrapperProps, "children"> {
   onChange: (e: any) => void
   onSubmit: (e?: any) => void
+  name: string
 }
 
 
@@ -33,8 +34,7 @@ const ModalContent = styled.div`
   }
 `
 
-const ModalEditCollection: FC<ModalEditCollectionProps> = ({onClose, isShow, onChange, onSubmit,}) => {
-  const [name, setName] = useState("")
+const ModalEditCollection: FC<ModalEditCollectionProps> = ({onClose, isShow, onChange, onSubmit, name}) => {
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -42,7 +42,6 @@ const ModalEditCollection: FC<ModalEditCollectionProps> = ({onClose, isShow, onC
       return;
     }
     onChange(value);
-    setName(value)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -50,7 +49,6 @@ const ModalEditCollection: FC<ModalEditCollectionProps> = ({onClose, isShow, onC
     onSubmit()
   }
 
-  useEffect(() => setName(""), [isShow])
   return (
     <ModalWrapper onClose={onClose} isShow={isShow}>
       <ModalContent>

@@ -26,6 +26,9 @@ const ListComponent = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
     justify-items: center;
+    & .card{
+      max-width: 220px;
+    }
     
     & .card-action {
       margin-top: 4px;
@@ -82,7 +85,7 @@ const List = () => {
       <SkeletonLoading isLoading={loading}>
         <div className='list-cards'>
           {data?.Page.media.map((item:any, idx:number) => (
-            <div key={idx}>
+            <div className="card" key={idx}>
               <Cards image={item.bannerImage} path={`/detail/${item.id}`}/>
               <div className='card-action'>
                 <Checkbox checked={checkList.some((check) => check.id === item.id)} onChange={(isCheck) => handleCheckbox(item, isCheck)}/>

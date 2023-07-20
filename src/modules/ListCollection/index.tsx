@@ -23,6 +23,10 @@ const ListComponent = styled.div`
     grid-gap: 20px;
     justify-items: center;
 
+    & .card{
+      max-width: 220px;
+    }
+
     & .card-info {
       display: flex;
       justify-content: space-between;
@@ -57,8 +61,12 @@ const ListCollection = () => {
   const [idx, setIdx] = useState<number | null>(0)
   const [isShow, setIsShow] = useState(false)
 
-  const handleShowModal = (id: number | null = null) => {
-    setIdx(id)
+  const handleShowModal = (id: number | null = null, nameCollection: string = "") => {
+    if(isShow){
+      setIdx(id)
+      setName(nameCollection)
+    }
+
     setIsShow(!isShow)
   }
 
@@ -81,12 +89,12 @@ const ListCollection = () => {
       {collections.length > 0 ? (
         <div className='list-cards'>
           {collections.map((item: any, idx: number) => (
-            <div key={idx}>
+            <div className="card" key={idx}>
               <Cards path={`/collections/${idx}`} image={item?.data[0]?.bannerImage}/>
               <div className='card-info'>
                 <h4>{item.name}</h4>
                 <div className='card-action'>
-                  <button onClick={() => handleShowModal(idx)}>
+                  <button onClick={() => handleShowModal(idx, item.name)}>
                     <Edit3 size={20} color={colors.secondary}/>
                   </button>
                   <button onClick={() => handleDeleteCollections(idx)}>
@@ -107,6 +115,7 @@ const ListCollection = () => {
         onChange={(val) => setName(val)}
         onSubmit={handleSubmit}
         isShow={isShow}
+        name={name}
       />
     </ListComponent>
   );

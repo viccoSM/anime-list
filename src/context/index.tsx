@@ -1,6 +1,7 @@
 import { FC, createContext, useReducer } from 'react';
 import { AppContextState, initialState } from './rootStateContext';
 import { AppContextAction, appContextReducer } from './rootActionContext';
+import ModalAlert from "@/components/ModalAlert";
 
 const AppContext = createContext<{
   state: AppContextState;
@@ -16,6 +17,14 @@ const AppContextProvider: FC<any> = ({ children }) => {
   return (
     <AppContext.Provider value={{ state, dispatch }}>
       {children}
+
+    {/*  Modal Alert*/}
+      <ModalAlert
+        message={state.modalAlert.message}
+        onConfirm={state.modalAlert.onConfirm}
+        onClose={() => dispatch({type: "INITIAL_STATE_MESSAGE"})}
+        isShow={state.modalAlert.isShow}
+      />
     </AppContext.Provider>
   );
 };

@@ -13,6 +13,9 @@ const ListComponent = styled.div`
   max-width: 1284px;
   padding: 0 16px;
   margin: auto;
+  & h1{
+    margin: 12px 0;
+  }
   & .list-header{
     display: flex;
     justify-content: space-between;
@@ -23,6 +26,16 @@ const ListComponent = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-gap: 20px;
     justify-items: center;
+    
+    & .card-action {
+      margin-top: 4px;
+      display: flex;
+      gap: 4px;
+      
+      & h4{
+        margin: 0
+      }
+    }
   }
 `
 const List = () => {
@@ -69,9 +82,12 @@ const List = () => {
       <SkeletonLoading isLoading={loading}>
         <div className='list-cards'>
           {data?.Page.media.map((item:any, idx:number) => (
-            <div key={idx} style={{display: "flex"}}>
-              <Checkbox checked={checkList.some((check) => check.id === item.id)} onChange={(isCheck) => handleCheckbox(item, isCheck)}/>
-              <Cards image={item.bannerImage} path={`/detail/${item.id}`} title={item.title.romaji}/>
+            <div key={idx}>
+              <Cards image={item.bannerImage} path={`/detail/${item.id}`}/>
+              <div className='card-action'>
+                <Checkbox checked={checkList.some((check) => check.id === item.id)} onChange={(isCheck) => handleCheckbox(item, isCheck)}/>
+                <h4>{item.title.romaji}</h4>
+              </div>
             </div>
           ))}
         </div>

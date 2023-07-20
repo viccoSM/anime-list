@@ -5,7 +5,6 @@ import {handleErrorImg} from "@/utils/images";
 
 interface CardsProps {
   path: string,
-  title: string
   image?: string
 }
 
@@ -18,36 +17,39 @@ const CardsComponent = styled.div`
   flex-flow: column;
   gap: 8px;
   align-items: center;
-  position: relative;
   max-width: 220px;
   text-align: center;
-  & .card-image{
+
+  & .card-image {
+    position: relative;
     height: 170px;
     overflow: hidden;
     border-radius: 10px;
-    & img{
+
+    & img {
       transition: transform 0.3s ease;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: ${({ isHovered }: CardImageProps) =>
+      transform: ${({isHovered}: CardImageProps) =>
               isHovered ? 'scale(1.1)' : 'scale(1)'};
     }
+
+    & .card-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
   }
-  & .card-link{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  & h4{
+
+  & h4 {
     margin: 0;
   }
 `
-const Cards:FC<CardsProps> = ({path, title, image}) => {
+const Cards: FC<CardsProps> = ({path, image}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -64,12 +66,10 @@ const Cards:FC<CardsProps> = ({path, title, image}) => {
       onMouseLeave={handleMouseLeave}
       isHovered={isHovered}
     >
-
       <div className='card-image'>
         <img src={image || '/images/default-img.png'} alt="" onError={handleErrorImg}/>
+        <Link href={path} className="card-link"/>
       </div>
-      <h4>{title}</h4>
-      <Link href={path} className="card-link"/>
     </CardsComponent>
   );
 }

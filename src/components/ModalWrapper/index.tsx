@@ -19,7 +19,7 @@ const ModalComponent = styled.div`
   align-items: center;
   z-index: 1000;
   & .modal-content {
-    width: 360px;
+    width: 300px;
     background-color: #fff;
     padding: 20px;
     border-radius: 4px;

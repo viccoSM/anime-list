@@ -1,21 +1,13 @@
 import React, {ChangeEvent, FC, FormEvent, useEffect, useState} from 'react';
-import styled from "@emotion/styled";
-import ModalWrapper, {ModalWrapperProps} from "@/components/ModalWrapper";
 import Button from "@/components/Button";
-import {getItemLocalStorage} from "@/utils/funcLocalStorage";
+import ModalWrapper, {ModalWrapperProps} from "@/components/ModalWrapper";
+import styled from "@emotion/styled";
 
-interface ModalAddCollectionProps extends Omit<ModalWrapperProps, "children"> {
+interface ModalEditCollectionProps extends Omit<ModalWrapperProps, "children"> {
   onChange: (e: any) => void
   onSubmit: (e?: any) => void
-  onChangeSelect: (e: any) => void
 }
 
-const Select = styled.select`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-`;
 
 const ModalContent = styled.div`
   & h3{
@@ -41,14 +33,8 @@ const ModalContent = styled.div`
   }
 `
 
-const ModalAddCollection: FC<ModalAddCollectionProps> = ({onClose, isShow, onChange, onSubmit, onChangeSelect}) => {
+const ModalEditCollection: FC<ModalEditCollectionProps> = ({onClose, isShow, onChange, onSubmit,}) => {
   const [name, setName] = useState("")
-  const options = getItemLocalStorage("collection")
-
-  const handleChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
-    onChangeSelect(e.target.value)
-  }
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -65,32 +51,18 @@ const ModalAddCollection: FC<ModalAddCollectionProps> = ({onClose, isShow, onCha
   }
 
   useEffect(() => setName(""), [isShow])
-
   return (
     <ModalWrapper onClose={onClose} isShow={isShow}>
       <ModalContent>
         <h3>Add Collection</h3>
         <form onSubmit={handleSubmit}>
           <div className='form-input'>
-            <label htmlFor="new-collection">New Collection</label>
+            <label htmlFor="new-collection">Edit Name Collection</label>
             <input type="text" onChange={handleChangeInput} value={name}/>
-          </div>
-          <div className='form-input'>
-            <label htmlFor="new-collection">Add to Collection</label>
-            <Select onChange={handleChangeSelect}>
-              <option value="">
-                None
-              </option>
-              {options.map((option: any, idx: number) => (
-                <option key={idx} value={idx}>
-                  {option.name}
-                </option>
-              ))}
-            </Select>
           </div>
 
           <Button themes="secondary" type="submit">
-            Add Collection
+            Edit Collection
           </Button>
         </form>
       </ModalContent>
@@ -98,4 +70,4 @@ const ModalAddCollection: FC<ModalAddCollectionProps> = ({onClose, isShow, onCha
   );
 }
 
-export default ModalAddCollection;
+export default ModalEditCollection;

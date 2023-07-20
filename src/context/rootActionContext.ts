@@ -1,5 +1,6 @@
 import { toastReducer } from "./reducersContext/toastReducers";
 import { AppContextState } from "./rootStateContext";
+import {modalAlertReducer} from "@/context/reducersContext/modal-alert-reducers";
 
 interface AppContextAction {
   type: string;
@@ -20,6 +21,7 @@ const appContextReducer = (
       return {
         ...state,
         toast: toastReducer(state.toast, action),
+        modalAlert: modalAlertReducer(state.modalAlert, action)
       };
   }
 };

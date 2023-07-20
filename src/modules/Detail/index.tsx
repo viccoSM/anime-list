@@ -15,6 +15,10 @@ const DetailComponent = styled.div`
   max-width: 1284px;
   padding: 0 16px;
   margin: auto;
+  margin-bottom: 40px;
+  & h1{
+    margin: 12px 0;
+  }
   & .detail-content {
     display: flex;
     flex-flow: column;

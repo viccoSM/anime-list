@@ -43,8 +43,6 @@ const DetailComponent = styled.div`
       }
 
       & .card-genre {
-        display: flex;
-        gap: 8px;
         font-weight: 600;
       }
       
@@ -115,7 +113,7 @@ const Detail = () => {
             <div className='card-info'>
               <div className="card-description" dangerouslySetInnerHTML={{__html: data?.Media.description}}/>
               <div className="card-genre">
-                {data?.Media.genres.map((item: string, idx: number) => <p key={idx}>{item},</p>)}
+                <p>{data?.Media.genres.map((item: string) => item + ", ")}</p>
               </div>
               <div>
                 <p>Rating: {data?.Media.averageScore}/100</p>

@@ -1,20 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Joker next-tailwind
 
-## Getting Started
+## Requirements
 
-First, run the development server:
+- [Node.js v16.18.0](https://nodejs.org) or later
+- [Yarn 1.22.19](https://classic.yarnpkg.com) or later
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+yarn install --frozen-lockfile
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Why use `--frozen-lockfile`?
+>
+> See https://classic.yarnpkg.com/en/docs/cli/install#toc-yarn-install-frozen-lockfile
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-### URL Web
+- Start Application
+  ```bash
+  yarn dev
+  ```
+- Build Application
+  ```bash
+  yarn build
+  ```
+- Check `package.json` to see more script.
+
+## Web Url
 [https://vicco-list-anime.netlify.app](https://vicco-list-anime.netlify.app)
+
+## Contributors
+
+- Vicco Semuel Manopo
+    - github: @viccosm
+    - email: viccosemuelmanopo@gmail.com

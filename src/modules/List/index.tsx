@@ -62,7 +62,10 @@ const List = () => {
     }
   }
 
-  const handleShowModal = () => setIsModal(!isModal)
+  const handleShowModal = () => {
+    if(isModal) setName("")
+    setIsModal(!isModal)
+  }
 
   const handleSubmit = () => {
     if(name) addNewCollection(name, checkList)

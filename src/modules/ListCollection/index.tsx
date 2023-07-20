@@ -58,12 +58,12 @@ const ListCollection = () => {
   const {showModalAlert, hideModalAlert} = useModalAlert()
 
   const [name, setName] = useState("")
-  const [idx, setIdx] = useState<number | null>(0)
+  const [id, setId] = useState<string>("")
   const [isShow, setIsShow] = useState(false)
 
-  const handleShowModal = (id: number | null = null, nameCollection: string = "") => {
-    if(isShow){
-      setIdx(id)
+  const handleShowModal = (id: string = "", nameCollection: string = "") => {
+    if(!isShow){
+      setId(id)
       setName(nameCollection)
     }
 
@@ -71,12 +71,12 @@ const ListCollection = () => {
   }
 
   const handleSubmit = () => {
-    editCollection(name, Number(idx))
+    editCollection(name, id)
 
     handleShowModal()
   }
 
-  const handleDeleteCollections = (idx:number) => {
+  const handleDeleteCollections = (idx:string) => {
     showModalAlert("Are you sure?", () => {
       deleteCollection(idx)
       hideModalAlert()
@@ -90,14 +90,14 @@ const ListCollection = () => {
         <div className='list-cards'>
           {collections.map((item: any, idx: number) => (
             <div className="card" key={idx}>
-              <Cards path={`/collections/${idx}`} image={item?.data[0]?.bannerImage}/>
+              <Cards path={`/collections/${item.id}`} image={item?.data[0]?.bannerImage}/>
               <div className='card-info'>
                 <h4>{item.name}</h4>
                 <div className='card-action'>
-                  <button onClick={() => handleShowModal(idx, item.name)}>
+                  <button onClick={() => handleShowModal(item.id, item.name)}>
                     <Edit3 size={20} color={colors.secondary}/>
                   </button>
-                  <button onClick={() => handleDeleteCollections(idx)}>
+                  <button onClick={() => handleDeleteCollections(item.id)}>
                     <Trash size={20} color={colors.danger}/>
                   </button>
                 </div>

@@ -53,20 +53,24 @@ const Collection = () => {
   const {showModalAlert, hideModalAlert} = useModalAlert()
   const collections = getItemLocalStorage("collection")
 
+  const findCollection = () => {
+    return collections.find((item: any) => item.id === id)
+  }
+
   const handleDeleteItem = (idx: number) => {
     showModalAlert("Are you sure?", () => {
-      deleteItemCollection(Number(id), idx)
+      deleteItemCollection(String(id), idx)
       hideModalAlert()
     })
   }
 
   return (
     <ListComponent>
-      <h1>List Collection {collections[Number(id)].name}</h1>
+      <h1>List Collection {findCollection().name}</h1>
 
-      {collections[Number(id)].data.length > 0 ? (
+      {findCollection().data.length > 0 ? (
         <div className='list-cards'>
-          {collections[Number(id)].data.map((item: any, idx: number) => (
+          {findCollection().data.map((item: any, idx: number) => (
             <div className='card' key={idx}>
               <Cards path={`/detail/${item?.id}`} key={idx} image={item?.bannerImage}/>
               <div className='card-info'>

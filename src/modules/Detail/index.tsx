@@ -119,7 +119,7 @@ const Detail = () => {
                 <p>Rating: {data?.Media.averageScore}/100</p>
                 <p>Episode: {data?.Media.episodes}</p>
                 {collected.length > 0 && (<>
-                  <p>Collected: {collected.map((item, idx) => <Link key={idx} href={`/collections/${idx}`}>{item.name}, </Link>)}</p>
+                  <p>Collected: {collected.map((item:any, idx) => <Link key={idx} href={`/collections/${item.id}`}>{item.name}, </Link>)}</p>
                 </>)}
               </div>
               <Button onClick={() => setIsModal(!isModal)} themes='secondary'>
